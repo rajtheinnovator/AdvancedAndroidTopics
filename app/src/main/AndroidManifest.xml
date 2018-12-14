@@ -26,6 +26,10 @@
             android:name=".daggerexamplebyharivignesh.DaggerExampleByHariVignesh"
             android:label="Dagger Example by Hari Vignesh"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".daggerexamplemindorks.DaggerExampleMindorks"
+            android:label="Dagger Example Mindorks"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
