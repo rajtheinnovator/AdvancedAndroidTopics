@@ -21,19 +21,24 @@
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="@+id/dagger_example_hari_vignesh"
         app:layout_constraintTop_toBottomOf="@+id/dagger_example_hari_vignesh"
-        app:layout_constraintVertical_bias="0.154" />
+        app:layout_constraintVertical_bias="0.288" />
 
     <Button
         android:id="@+id/dagger_example_hari_vignesh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@null"
         android:text="Dagger Example by Hari Vignesh"
         android:textAllCaps="false"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/dagger_example_mindorks"
-        app:layout_constraintStart_toStartOf="@+id/dagger_example_mindorks"
-        tools:layout_editor_absoluteY="192dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dagger_example_mindorks" />
 
     <Button
         android:id="@+id/dagger_example_mindorks"
@@ -41,19 +46,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="212dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@null"
         android:text="Dagger Example Mindorks"
         android:textAllCaps="false"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/dagger_example_hari_vignesh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.765" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

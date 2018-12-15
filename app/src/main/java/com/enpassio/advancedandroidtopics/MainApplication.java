@@ -3,7 +3,9 @@ package com.enpassio.advancedandroidtopics;
 import android.app.Application;
 import android.content.Context;
 
+import com.enpassio.advancedandroidtopics.daggerexamplemindorks.data.DataManager;
 import com.enpassio.advancedandroidtopics.daggerexamplemindorks.di.component.ApplicationComponent;
+import com.enpassio.advancedandroidtopics.daggerexamplemindorks.di.component.DaggerApplicationComponent;
 import com.enpassio.advancedandroidtopics.daggerexamplemindorks.di.module.ApplicationModule;
 
 import javax.inject.Inject;

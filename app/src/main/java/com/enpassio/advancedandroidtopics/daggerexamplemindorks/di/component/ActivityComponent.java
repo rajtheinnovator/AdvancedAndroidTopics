@@ -1,8 +1,8 @@
 package com.enpassio.advancedandroidtopics.daggerexamplemindorks.di.component;
 
-import com.enpassio.advancedandroidtopics.MainActivity;
 import com.enpassio.advancedandroidtopics.daggerexamplemindorks.di.PerActivity;
 import com.enpassio.advancedandroidtopics.daggerexamplemindorks.di.module.ActivityModule;
+import com.enpassio.advancedandroidtopics.daggerexamplemindorks.view.DaggerExampleMindorks;
 
 import dagger.Component;
 
@@ -10,6 +10,6 @@ import dagger.Component;
 @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
 
-    void inject(MainActivity mainActivity);
+    void inject(DaggerExampleMindorks daggerExampleMindorks);
 
 }

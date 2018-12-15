@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.DaggerExampleByHariVignesh;
-import com.enpassio.advancedandroidtopics.daggerexamplemindorks.DaggerExampleMindorks;
+import com.enpassio.advancedandroidtopics.daggerexamplemindorks.view.DaggerExampleMindorks;
 import com.enpassio.advancedandroidtopics.mvpwithdaggermindorks.MvpWithDaggerActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {

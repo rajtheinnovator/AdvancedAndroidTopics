@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.enpassio.advancedandroidtopics.MainApplication;
+import com.enpassio.advancedandroidtopics.daggerexamplemindorks.data.DataManager;
+import com.enpassio.advancedandroidtopics.daggerexamplemindorks.data.DbHelper;
+import com.enpassio.advancedandroidtopics.daggerexamplemindorks.data.SharedPrefsHelper;
 import com.enpassio.advancedandroidtopics.daggerexamplemindorks.di.ApplicationContext;
 import com.enpassio.advancedandroidtopics.daggerexamplemindorks.di.module.ApplicationModule;
 
