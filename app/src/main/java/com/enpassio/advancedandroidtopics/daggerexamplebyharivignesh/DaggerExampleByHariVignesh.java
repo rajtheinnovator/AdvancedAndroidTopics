@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.enpassio.advancedandroidtopics.R;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.adapter.RandomUserAdapter;
@@ -13,7 +12,12 @@ import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces.
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.model.RandomUsers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jakewharton.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -29,6 +33,8 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
     RecyclerView recyclerView;
     RandomUserAdapter mAdapter;
 
+    Picasso picasso;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +46,11 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
 
         Timber.plant(new Timber.DebugTree());
 
+        File cacheFile = new File(this.getCacheDir(), "HttpCache");
+        cacheFile.mkdirs();
+
+        Cache cache = new Cache(cacheFile, 10 * 1000 * 1000); //10 MB
+
         HttpLoggingInterceptor httpLoggingInterceptor = new
                 HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
@@ -50,10 +61,16 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
 
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
+
         OkHttpClient okHttpClient = new OkHttpClient()
                 .newBuilder()
+                .cache(cache)
                 .addInterceptor(httpLoggingInterceptor)
                 .build();
+
+        OkHttp3Downloader okHttpDownloader = new OkHttp3Downloader(okHttpClient);
+
+        picasso = new Picasso.Builder(this).downloader(okHttpDownloader).build();
 
         retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
@@ -75,9 +92,8 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
         randomUsersCall.enqueue(new Callback<RandomUsers>() {
             @Override
             public void onResponse(Call<RandomUsers> call, @NonNull Response<RandomUsers> response) {
-                Log.d("my_tag", "onResponse called with");
                 if (response.isSuccessful()) {
-                    mAdapter = new RandomUserAdapter();
+                    mAdapter = new RandomUserAdapter(picasso);
                     mAdapter.setItems(response.body().getResults());
                     recyclerView.setAdapter(mAdapter);
                 }
@@ -85,7 +101,6 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RandomUsers> call, Throwable t) {
-                Log.d("my_tag", "onFailure called with msg: " + t.getMessage());
                 Timber.i(t.getMessage());
             }
         });
@@ -94,4 +109,6 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
     public RandomUsersApi getRandomUserService() {
         return retrofit.create(RandomUsersApi.class);
     }
+
+
 }
