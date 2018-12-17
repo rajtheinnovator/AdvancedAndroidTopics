@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.enpassio.advancedandroidtopics">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
