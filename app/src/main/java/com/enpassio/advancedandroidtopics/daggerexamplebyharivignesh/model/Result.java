@@ -1,13 +1,12 @@
 package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.model;
 
-import android.location.Location;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
-public class Result {
+public class Result implements Parcelable {
 
     @SerializedName("gender")
     @Expose
@@ -24,12 +23,24 @@ public class Result {
     @SerializedName("login")
     @Expose
     private Login login;
+    public final static Parcelable.Creator<Result> CREATOR = new Creator<Result>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
+        }
+
+        public Result[] newArray(int size) {
+            return (new Result[size]);
+        }
+
+    };
     @SerializedName("dob")
     @Expose
-    private String dob;
-    @SerializedName("registered")
-    @Expose
-    private String registered;
+    private Dob dob;
     @SerializedName("phone")
     @Expose
     private String phone;
@@ -45,6 +56,60 @@ public class Result {
     @SerializedName("nat")
     @Expose
     private String nat;
+    @SerializedName("registered")
+    @Expose
+    private Registered registered;
+
+    protected Result(Parcel in) {
+        this.gender = ((String) in.readValue((String.class.getClassLoader())));
+        this.name = ((Name) in.readValue((Name.class.getClassLoader())));
+        this.location = ((Location) in.readValue((Location.class.getClassLoader())));
+        this.email = ((String) in.readValue((String.class.getClassLoader())));
+        this.login = ((Login) in.readValue((Login.class.getClassLoader())));
+        this.dob = ((Dob) in.readValue((Dob.class.getClassLoader())));
+        this.registered = ((Registered) in.readValue((Registered.class.getClassLoader())));
+        this.phone = ((String) in.readValue((String.class.getClassLoader())));
+        this.cell = ((String) in.readValue((String.class.getClassLoader())));
+        this.id = ((Id) in.readValue((Id.class.getClassLoader())));
+        this.picture = ((Picture) in.readValue((Picture.class.getClassLoader())));
+        this.nat = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    /**
+     * No args constructor for use in serialization
+     */
+    public Result() {
+    }
+
+    /**
+     * @param picture
+     * @param id
+     * @param phone
+     * @param email
+     * @param location
+     * @param registered
+     * @param cell
+     * @param dob
+     * @param name
+     * @param gender
+     * @param nat
+     * @param login
+     */
+    public Result(String gender, Name name, Location location, String email, Login login, Dob dob, Registered registered, String phone, String cell, Id id, Picture picture, String nat) {
+        super();
+        this.gender = gender;
+        this.name = name;
+        this.location = location;
+        this.email = email;
+        this.login = login;
+        this.dob = dob;
+        this.registered = registered;
+        this.phone = phone;
+        this.cell = cell;
+        this.id = id;
+        this.picture = picture;
+        this.nat = nat;
+    }
 
     public String getGender() {
         return gender;
@@ -86,19 +151,19 @@ public class Result {
         this.login = login;
     }
 
-    public String getDob() {
+    public Dob getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Dob dob) {
         this.dob = dob;
     }
 
-    public String getRegistered() {
+    public Registered getRegistered() {
         return registered;
     }
 
-    public void setRegistered(String registered) {
+    public void setRegistered(Registered registered) {
         this.registered = registered;
     }
 
@@ -142,9 +207,23 @@ public class Result {
         this.nat = nat;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("gender", gender).append("name", name).append("location", location).append("email", email).append("login", login).append("dob", dob).append("registered", registered).append("phone", phone).append("cell", cell).append("id", id).append("picture", picture).append("nat", nat).toString();
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(gender);
+        dest.writeValue(name);
+        dest.writeValue(location);
+        dest.writeValue(email);
+        dest.writeValue(login);
+        dest.writeValue(dob);
+        dest.writeValue(registered);
+        dest.writeValue(phone);
+        dest.writeValue(cell);
+        dest.writeValue(id);
+        dest.writeValue(picture);
+        dest.writeValue(nat);
+    }
+
+    public int describeContents() {
+        return 0;
     }
 
 }

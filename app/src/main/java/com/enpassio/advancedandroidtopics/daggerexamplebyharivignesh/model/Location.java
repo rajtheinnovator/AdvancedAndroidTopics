@@ -1,11 +1,12 @@
 package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
-public class Location {
+public class Location implements Parcelable {
 
     @SerializedName("street")
     @Expose
@@ -19,6 +20,60 @@ public class Location {
     @SerializedName("postcode")
     @Expose
     private String postcode;
+    public final static Parcelable.Creator<Location> CREATOR = new Creator<Location>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Location createFromParcel(Parcel in) {
+            return new Location(in);
+        }
+
+        public Location[] newArray(int size) {
+            return (new Location[size]);
+        }
+
+    };
+    @SerializedName("coordinates")
+    @Expose
+    private Coordinates coordinates;
+    @SerializedName("timezone")
+    @Expose
+    private Timezone timezone;
+
+    protected Location(Parcel in) {
+        this.street = ((String) in.readValue((String.class.getClassLoader())));
+        this.city = ((String) in.readValue((String.class.getClassLoader())));
+        this.state = ((String) in.readValue((String.class.getClassLoader())));
+        this.postcode = ((String) in.readValue((String.class.getClassLoader())));
+        this.coordinates = ((Coordinates) in.readValue((Coordinates.class.getClassLoader())));
+        this.timezone = ((Timezone) in.readValue((Timezone.class.getClassLoader())));
+    }
+
+    /**
+     * No args constructor for use in serialization
+     */
+    public Location() {
+    }
+
+    /**
+     * @param timezone
+     * @param street
+     * @param state
+     * @param postcode
+     * @param coordinates
+     * @param city
+     */
+    public Location(String street, String city, String state, String postcode, Coordinates coordinates, Timezone timezone) {
+        super();
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.postcode = postcode;
+        this.coordinates = coordinates;
+        this.timezone = timezone;
+    }
 
     public String getStreet() {
         return street;
@@ -52,9 +107,33 @@ public class Location {
         this.postcode = postcode;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("street", street).append("city", city).append("state", state).append("postcode", postcode).toString();
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public Timezone getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(Timezone timezone) {
+        this.timezone = timezone;
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(street);
+        dest.writeValue(city);
+        dest.writeValue(state);
+        dest.writeValue(postcode);
+        dest.writeValue(coordinates);
+        dest.writeValue(timezone);
+    }
+
+    public int describeContents() {
+        return 0;
     }
 
 }

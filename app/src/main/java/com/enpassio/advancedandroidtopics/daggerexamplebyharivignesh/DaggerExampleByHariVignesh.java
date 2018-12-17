@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.enpassio.advancedandroidtopics.R;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.adapter.RandomUserAdapter;
@@ -74,6 +75,7 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
         randomUsersCall.enqueue(new Callback<RandomUsers>() {
             @Override
             public void onResponse(Call<RandomUsers> call, @NonNull Response<RandomUsers> response) {
+                Log.d("my_tag", "onResponse called with");
                 if (response.isSuccessful()) {
                     mAdapter = new RandomUserAdapter();
                     mAdapter.setItems(response.body().getResults());
@@ -83,6 +85,7 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RandomUsers> call, Throwable t) {
+                Log.d("my_tag", "onFailure called with msg: " + t.getMessage());
                 Timber.i(t.getMessage());
             }
         });
@@ -91,6 +94,4 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
     public RandomUsersApi getRandomUserService() {
         return retrofit.create(RandomUsersApi.class);
     }
-
-
 }

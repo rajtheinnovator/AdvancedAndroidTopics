@@ -1,13 +1,14 @@
 package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.util.List;
 
-public class RandomUsers {
+public class RandomUsers implements Parcelable {
 
     @SerializedName("results")
     @Expose
@@ -15,6 +16,42 @@ public class RandomUsers {
     @SerializedName("info")
     @Expose
     private Info info;
+    public final static Parcelable.Creator<RandomUsers> CREATOR = new Creator<RandomUsers>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public RandomUsers createFromParcel(Parcel in) {
+            return new RandomUsers(in);
+        }
+
+        public RandomUsers[] newArray(int size) {
+            return (new RandomUsers[size]);
+        }
+
+    };
+
+    protected RandomUsers(Parcel in) {
+        in.readList(this.results, (com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.model.Result.class.getClassLoader()));
+        this.info = ((Info) in.readValue((Info.class.getClassLoader())));
+    }
+
+    /**
+     * No args constructor for use in serialization
+     */
+    public RandomUsers() {
+    }
+
+    /**
+     * @param results
+     * @param info
+     */
+    public RandomUsers(List<Result> results, Info info) {
+        super();
+        this.results = results;
+        this.info = info;
+    }
 
     public List<Result> getResults() {
         return results;
@@ -32,9 +69,13 @@ public class RandomUsers {
         this.info = info;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("results", results).append("info", info).toString();
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeList(results);
+        dest.writeValue(info);
+    }
+
+    public int describeContents() {
+        return 0;
     }
 
 }
