@@ -1,5 +1,6 @@
 package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -33,20 +34,39 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
     RecyclerView recyclerView;
     RandomUserAdapter mAdapter;
 
+    Context context;
     Picasso picasso;
+
+    RandomUsersApi randomUsersApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dagger_example_by_hari_vignesh);
         initViews();
+        context = this;
+        //beforeDagger2();
+        afterDagger();
+        populateUsers();
 
+    }
+
+    public void afterDagger() {
+        RandomUserComponent daggerRandomUserComponent = DaggerRandomUserComponent.builder()
+                .contextModule(new ContextModule(this))
+                .build();
+        picasso = daggerRandomUserComponent.getPicasso();
+        randomUsersApi = daggerRandomUserComponent.getRandomUserService();
+
+    }
+
+    private void beforeDagger2() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();
 
         Timber.plant(new Timber.DebugTree());
 
-        File cacheFile = new File(this.getCacheDir(), "HttpCache");
+        File cacheFile = new File(context.getCacheDir(), "HttpCache");
         cacheFile.mkdirs();
 
         Cache cache = new Cache(cacheFile, 10 * 1000 * 1000); //10 MB
@@ -70,16 +90,13 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
 
         OkHttp3Downloader okHttpDownloader = new OkHttp3Downloader(okHttpClient);
 
-        picasso = new Picasso.Builder(this).downloader(okHttpDownloader).build();
+        picasso = new Picasso.Builder(context).downloader(okHttpDownloader).build();
 
         retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl("https://randomuser.me/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-
-        populateUsers();
-
     }
 
     private void initViews() {
@@ -93,7 +110,7 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
             @Override
             public void onResponse(Call<RandomUsers> call, @NonNull Response<RandomUsers> response) {
                 if (response.isSuccessful()) {
-                    mAdapter = new RandomUserAdapter(picasso);
+                    mAdapter = new RandomUserAdapter(DaggerExampleByHariVignesh.this, picasso);
                     mAdapter.setItems(response.body().getResults());
                     recyclerView.setAdapter(mAdapter);
                 }
@@ -107,7 +124,7 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
     }
 
     public RandomUsersApi getRandomUserService() {
-        return retrofit.create(RandomUsersApi.class);
+        return randomUsersApi;
     }
 
 
