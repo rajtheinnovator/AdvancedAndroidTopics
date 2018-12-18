@@ -4,6 +4,8 @@ import android.content.Context;
 
 import java.io.File;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
@@ -29,7 +31,8 @@ public class OkHttpClientModule {
     }
 
     @Provides
-    public File file(Context context) {
+    @RandomUserApplicationScope
+    public File file(@Named("application_context") Context context) {
         File file = new File(context.getCacheDir(), "HttpCache");
         file.mkdirs();
         return file;

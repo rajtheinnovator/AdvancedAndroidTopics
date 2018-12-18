@@ -5,6 +5,7 @@ import com.squareup.picasso.Picasso;
 
 import dagger.Component;
 
+@RandomUserApplicationScope
 @Component(modules = {RandomUsersModule.class, PicassoModule.class})
 public interface RandomUserComponent {
     RandomUsersApi getRandomUserService();

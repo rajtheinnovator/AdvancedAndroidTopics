@@ -1,5 +1,6 @@
 package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh;
 
+import android.app.Activity;
 import android.content.Context;
 
 import javax.inject.Named;
@@ -7,19 +8,22 @@ import javax.inject.Named;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * Created by Abhishek Raj on 12/18/2018.
+ */
 @Module
-public class ContextModule {
+public class ActivityModule {
 
-    Context context;
+    private final Context context;
 
-    public ContextModule(Context context) {
+    ActivityModule(Activity context) {
         this.context = context;
     }
 
-    @Named("application_context")
+    @Named("activity_context")
     @RandomUserApplicationScope
     @Provides
     public Context context() {
-        return context.getApplicationContext();
+        return context;
     }
 }
