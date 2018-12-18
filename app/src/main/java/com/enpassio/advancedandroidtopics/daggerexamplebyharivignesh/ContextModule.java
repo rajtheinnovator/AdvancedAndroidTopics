@@ -2,8 +2,6 @@ package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh;
 
 import android.content.Context;
 
-import javax.inject.Named;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -16,7 +14,7 @@ public class ContextModule {
         this.context = context;
     }
 
-    @Named("application_context")
+    @ApplicationContext
     @RandomUserApplicationScope
     @Provides
     public Context context() {
