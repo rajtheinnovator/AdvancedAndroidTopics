@@ -1,7 +1,7 @@
 package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.mainactivityfeature;
 
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.DaggerExampleActivityByHariVignesh;
-import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.RandomUserComponent;
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.component.RandomUserComponent;
 
 import dagger.Component;
 

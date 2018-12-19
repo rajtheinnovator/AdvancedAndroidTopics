@@ -1,7 +1,9 @@
-package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh;
+package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.module;
 
 import android.content.Context;
 
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces.ApplicationContext;
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces.RandomUserApplicationScope;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
@@ -10,7 +12,7 @@ import dagger.Provides;
 import okhttp3.OkHttpClient;
 
 @Module(includes = OkHttpClientModule.class)
-class PicassoModule {
+public class PicassoModule {
 
     @RandomUserApplicationScope
     @Provides

@@ -1,5 +1,6 @@
-package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh;
+package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.module;
 
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces.RandomUserApplicationScope;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces.RandomUsersApi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

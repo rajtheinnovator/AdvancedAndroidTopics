@@ -1,4 +1,4 @@
-package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh;
+package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

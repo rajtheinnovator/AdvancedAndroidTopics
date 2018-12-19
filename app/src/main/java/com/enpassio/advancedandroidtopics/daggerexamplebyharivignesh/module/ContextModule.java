@@ -1,6 +1,9 @@
-package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh;
+package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.module;
 
 import android.content.Context;
+
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces.ApplicationContext;
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces.RandomUserApplicationScope;
 
 import dagger.Module;
 import dagger.Provides;

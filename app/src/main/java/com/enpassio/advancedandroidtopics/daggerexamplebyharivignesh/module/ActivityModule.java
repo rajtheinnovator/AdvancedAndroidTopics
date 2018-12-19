@@ -1,7 +1,9 @@
-package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh;
+package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.module;
 
 import android.app.Activity;
 import android.content.Context;
+
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces.RandomUserApplicationScope;
 
 import javax.inject.Named;
 
