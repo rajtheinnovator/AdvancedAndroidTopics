@@ -7,9 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.enpassio.advancedandroidtopics.MainApplication;
 import com.enpassio.advancedandroidtopics.R;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.adapter.RandomUserAdapter;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces.RandomUsersApi;
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.mainactivityfeature.DaggerMainActivityComponent;
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.mainactivityfeature.MainActivityComponent;
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.mainactivityfeature.MainActivityModule;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.model.RandomUsers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -46,9 +50,19 @@ public class DaggerExampleActivityByHariVignesh extends AppCompatActivity {
         initViews();
         context = this;
         //beforeDagger2();
-        afterDagger();
+        //afterDagger();
+        afterActivityLevelComponent();
         populateUsers();
 
+    }
+
+    private void afterActivityLevelComponent() {
+        MainActivityComponent mainActivityComponent = DaggerMainActivityComponent.builder()
+                .mainActivityModule(new MainActivityModule(this))
+                .randomUserComponent(MainApplication.get(this).getRandomUserApplicationComponent())
+                .build();
+        randomUsersApi = mainActivityComponent.getRandomUserService();
+        mAdapter = mainActivityComponent.getRandomUserAdapter();
     }
 
     public void afterDagger() {
