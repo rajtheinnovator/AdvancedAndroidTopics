@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, MvpWithDaggerActivity.class));
                 break;
             case R.id.dagger_example_hari_vignesh:
+                //referenced from: https://medium.com/@harivigneshjayapalan/dagger-2-for-android-beginners-introduction-be6580cb3edb
                 startActivity(new Intent(MainActivity.this, DaggerExampleActivityByHariVignesh.class));
                 break;
             case R.id.dagger_example_mindorks:

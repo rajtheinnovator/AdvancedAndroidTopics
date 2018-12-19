@@ -1,8 +1,7 @@
 package com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.mainactivityfeature;
 
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.DaggerExampleActivityByHariVignesh;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.RandomUserComponent;
-import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.adapter.RandomUserAdapter;
-import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces.RandomUsersApi;
 
 import dagger.Component;
 
@@ -13,8 +12,6 @@ import dagger.Component;
 @MainActivityScope
 public interface MainActivityComponent {
 
-    RandomUserAdapter getRandomUserAdapter();
-
-    RandomUsersApi getRandomUserService();
+    void injectMainActivity(DaggerExampleActivityByHariVignesh daggerExampleActivityByHariVignesh);
 
 }

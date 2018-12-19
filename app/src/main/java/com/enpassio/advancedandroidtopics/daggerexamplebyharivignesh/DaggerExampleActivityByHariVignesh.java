@@ -22,6 +22,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
+import javax.inject.Inject;
+
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -32,16 +34,20 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
+////referenced from: https://medium.com/@harivigneshjayapalan/dagger-2-for-android-beginners-introduction-be6580cb3edb
 public class DaggerExampleActivityByHariVignesh extends AppCompatActivity {
 
     Retrofit retrofit;
     RecyclerView recyclerView;
-    RandomUserAdapter mAdapter;
 
     Context context;
     Picasso picasso;
 
+    @Inject
     RandomUsersApi randomUsersApi;
+
+    @Inject
+    RandomUserAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +67,7 @@ public class DaggerExampleActivityByHariVignesh extends AppCompatActivity {
                 .mainActivityModule(new MainActivityModule(this))
                 .randomUserComponent(MainApplication.get(this).getRandomUserApplicationComponent())
                 .build();
-        randomUsersApi = mainActivityComponent.getRandomUserService();
-        mAdapter = mainActivityComponent.getRandomUserAdapter();
+        mainActivityComponent.injectMainActivity(this);
     }
 
     public void afterDagger() {
