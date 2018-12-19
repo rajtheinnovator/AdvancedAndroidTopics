@@ -25,7 +25,7 @@
             android:label="Mvp with Dagger"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".daggerexamplebyharivignesh.DaggerExampleByHariVignesh"
+            android:name=".daggerexamplebyharivignesh.DaggerExampleActivityByHariVignesh"
             android:label="Dagger Example by Hari Vignesh"
             android:parentActivityName=".MainActivity" />
         <activity

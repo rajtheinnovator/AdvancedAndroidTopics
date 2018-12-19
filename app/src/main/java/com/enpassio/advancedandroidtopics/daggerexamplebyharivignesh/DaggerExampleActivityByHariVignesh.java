@@ -28,7 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
-public class DaggerExampleByHariVignesh extends AppCompatActivity {
+public class DaggerExampleActivityByHariVignesh extends AppCompatActivity {
 
     Retrofit retrofit;
     RecyclerView recyclerView;
@@ -110,7 +110,7 @@ public class DaggerExampleByHariVignesh extends AppCompatActivity {
             @Override
             public void onResponse(Call<RandomUsers> call, @NonNull Response<RandomUsers> response) {
                 if (response.isSuccessful()) {
-                    mAdapter = new RandomUserAdapter(DaggerExampleByHariVignesh.this, picasso);
+                    mAdapter = new RandomUserAdapter(DaggerExampleActivityByHariVignesh.this, picasso);
                     mAdapter.setItems(response.body().getResults());
                     recyclerView.setAdapter(mAdapter);
                 }

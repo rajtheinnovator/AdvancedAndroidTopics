@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.enpassio.advancedandroidtopics.R;
-import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.DaggerExampleByHariVignesh;
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.DaggerExampleActivityByHariVignesh;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.model.Result;
 import com.squareup.picasso.Picasso;
 
@@ -18,12 +18,12 @@ import java.util.List;
 public class RandomUserAdapter extends RecyclerView.Adapter<RandomUserAdapter.RandomUserViewHolder> {
 
     private final Picasso picasso;
-    private final DaggerExampleByHariVignesh daggerExampleByHariVignesh;
+    private final DaggerExampleActivityByHariVignesh daggerExampleActivityByHariVignesh;
     private List<Result> resultList = new ArrayList<>();
 
 
-    public RandomUserAdapter(DaggerExampleByHariVignesh activity, Picasso picasso) {
-        this.daggerExampleByHariVignesh = activity;
+    public RandomUserAdapter(DaggerExampleActivityByHariVignesh activity, Picasso picasso) {
+        this.daggerExampleActivityByHariVignesh = activity;
         this.picasso = picasso;
     }
 
@@ -39,7 +39,7 @@ public class RandomUserAdapter extends RecyclerView.Adapter<RandomUserAdapter.Ra
         Result result = resultList.get(position);
         holder.textView.setText(String.format("%s %s", result.getName().getFirst(),
                 result.getName().getLast()));
-        picasso.with(daggerExampleByHariVignesh)
+        picasso.with(daggerExampleActivityByHariVignesh)
                 .load(result.getPicture().getLarge())
                 .into(holder.imageView);
     }

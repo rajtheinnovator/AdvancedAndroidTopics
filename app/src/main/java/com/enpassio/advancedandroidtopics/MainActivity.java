@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.DaggerExampleByHariVignesh;
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.DaggerExampleActivityByHariVignesh;
 import com.enpassio.advancedandroidtopics.daggerexamplemindorks.view.DaggerExampleMindorks;
 import com.enpassio.advancedandroidtopics.mvpwithdaggermindorks.MvpWithDaggerActivity;
 
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, MvpWithDaggerActivity.class));
                 break;
             case R.id.dagger_example_hari_vignesh:
-                startActivity(new Intent(MainActivity.this, DaggerExampleByHariVignesh.class));
+                startActivity(new Intent(MainActivity.this, DaggerExampleActivityByHariVignesh.class));
                 break;
             case R.id.dagger_example_mindorks:
                 startActivity(new Intent(MainActivity.this, DaggerExampleMindorks.class));
