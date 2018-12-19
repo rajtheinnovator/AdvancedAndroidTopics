@@ -10,7 +10,7 @@ public class ContextModule {
 
     Context context;
 
-    ContextModule(Context context) {
+    public ContextModule(Context context) {
         this.context = context;
     }
 
