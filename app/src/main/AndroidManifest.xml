@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mvpwithdaggermindorks.MvpWithDaggerActivity"
+            android:name=".mvpwithdaggermindorks.ui.MvpWithDaggerActivity"
             android:label="Mvp with Dagger"
             android:parentActivityName=".MainActivity" />
         <activity

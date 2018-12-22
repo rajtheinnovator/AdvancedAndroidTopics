@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import com.enpassio.advancedandroidtopics.MainApplication;
 import com.enpassio.advancedandroidtopics.R;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.adapter.RandomUserAdapter;
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.component.DaggerRandomUserComponent;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.component.RandomUserComponent;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.interfaces.RandomUsersApi;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.mainactivityfeature.DaggerMainActivityComponent;

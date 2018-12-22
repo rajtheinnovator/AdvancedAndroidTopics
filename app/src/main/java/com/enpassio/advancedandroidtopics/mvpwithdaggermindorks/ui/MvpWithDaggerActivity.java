@@ -1,4 +1,4 @@
-package com.enpassio.advancedandroidtopics.mvpwithdaggermindorks;
+package com.enpassio.advancedandroidtopics.mvpwithdaggermindorks.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

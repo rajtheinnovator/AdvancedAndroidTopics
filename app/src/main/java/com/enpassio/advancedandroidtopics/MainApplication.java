@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
-import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.DaggerRandomUserComponent;
+import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.component.DaggerRandomUserComponent;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.component.RandomUserComponent;
 import com.enpassio.advancedandroidtopics.daggerexamplebyharivignesh.module.ContextModule;
 import com.enpassio.advancedandroidtopics.daggerexamplemindorks.data.DataManager;

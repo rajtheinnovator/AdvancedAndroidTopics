@@ -13,7 +13,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@null"
-        android:text="MVP witrh Dagger Mindorks example"
+        android:text="MVP with Dagger Mindorks example"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
